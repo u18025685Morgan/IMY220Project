@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>EventScape - Splash Page</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<meta charset="utf-8" />
+	<meta name="author" content="Morgan Else">	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">	
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://kit.fontawesome.com/d183f81595.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container">
+        <div class="welcome">
+       
+            <h2 class='display-2' style='text-align:center'>Welcome to EventScape</h2>
+        
+            <p class='lead text-center'>The one place to plan events, get organised, make friends, and look good doing it! So what are you waiting for, lets go!</p>
+            <i class="fa-solid fa-arrow-down fa-6x fa-bounce"></i>
+        </div>
+        <section id="forms">
+			<div class="row">
+				<div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">Coming back?</div>
+                                <div class="card-body">
+                                    <form action="home.php" method="POST">
+                                        <fieldset>
+                                            <div class="row">
+                                                <div class="col-12 col-lg-6">
+                                                    <label for="loginEmail">Email Address:</label>
+                                                    <input type="email" id="loginEmail" class="form-control" placeholder="name@email.com" name="email" required>
+                                                </div>
+                                                <div class="col-12 col-lg-6">
+                                                    <label for="loginPass">Password:</label>
+                                                    <input type="password" id="loginPass" class="form-control" placeholder="******" name="pass" required>
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-12">
+                                                    <button type="submit" class="btn btn-dark">Login <i class="fa fa-angle-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    EventScape is a platform for event planners and people who want to discover what they're doing this weekend. When fully developed, EventScape will allow people to make friends and attend events, as well as leave reviews and ratings for everyone to see.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					
+				</div>
+				<div class="col-12 col-md-6 mt-3 mt-md-0">
+					<div class="card">
+						<div class="card-header">Let's Sign you up!</div>
+						<div class="card-body">
+							<form action="register.php" method="POST">
+								<fieldset>
+									<div class="row">
+										<div class="col-12 col-lg-6">
+											<label for="regName">First Name:</label>
+											<input type="text" id="regName" class="form-control" placeholder="John" name="fname" required>
+										</div>
+										<div class="col-12 col-lg-6">
+											<label for="regSurname">Last Name:</label>
+											<input type="text" id="regSurname" class="form-control" placeholder="Doe" name="lname required">
+										</div>
+									</div>
+									<div class="row mt-3">
+										<div class="col-12 col-lg-6">
+											<label for="regEmail">Email Address:</label>
+											<input type="email" id="regEmail" class="form-control" placeholder="john.doe@gmail.com" name="email" required>
+										</div>
+										<div class="col-12 col-lg-6">
+											<label for="regBirthDate">Date of Birth:</label>
+											<input type="date" id="regBirthDate" class="form-control" name="date" required>
+										</div>
+									</div>
+									<div class="row mt-3">
+										<div class="col-12 col-lg-6">
+											<label for="regEmail">Create Password:</label>
+											<input type="password" id="pass1" class="form-control" placeholder="******" name="pass" required>
+										</div>
+										<div class="col-12 col-lg-6">
+											<label for="regEmail">Confirm Password:</label>
+											<input type="password" id="pass2" class="form-control" placeholder="******" required>
+										</div>
+									</div>
+									<div class="row mt-3">
+										<div class="col-12">
+											<button type="submit" class="btn btn-dark">Register <i class="fa fa-angle-right"></i></button>
+										</div>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+    </div>
+</body>
+</html>

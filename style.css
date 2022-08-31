@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Roboto&display=swap');
+:root{
+	
+--mint-cream: #f1fffaff;
+--caribbean-green: #00c49aff;
+--yellow-crayola: #f8e16cff;
+--melon: #ffc2b4ff;
+--coral: #fb8f67ff;
+--ebony: #464e47ff;
+}
+
+/* SPLASH PAGE */
+
+body{
+	background-image: url(media/repeated-square.png);
+	background-repeat: repeat;
+	color: var(--ebony);
+	font-family: 'Roboto', sans-serif;
+	
+}
+
+#indexCard input[type="text"]{
+	background-color: var(--mint-cream);
+}
+
+#indexCard input[type="email"]{
+	background-color: var(--mint-cream);
+}
+
+#indexCard input[type="password"]{
+	background-color: var(--mint-cream);
+}
+
+#indexCard input[type="file"]{
+	background-color: var(--mint-cream);
+}
+
+#indexCard input[type="date"]{
+	background-color: var(--mint-cream);
+}
+
+
+
+
+div.welcome{
+	animation: fadeInAnimation ease 3s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+
+	padding: 10% 0;
+	text-align: center;
+	/* 
+	position: absolute;
+
+	left: 50%;
+	transform: translate(-50%, -50%); */
+}
+@keyframes fadeInAnimation {
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+section{
+	padding:15% 0;
+}
+
+.fa-arrow-down{
+	color: var(--caribbean-green);
+}
+
+div.card-body{
+	font-family: 'Open Sans', sans-serif;
+	
+	background-color: var(--ebony);
+	color: var(--mint-cream);
+}
+
+div.card-header{
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	background-color: var(--ebony);
+	color: var(--mint-cream);
+}
+
+/* BUTTONS */
+button.btn{
+	background-color: var(--caribbean-green);
+	border-color: var(--caribbean-green);
+	color: var(--mint-cream);
+	font-size: 20px;
+}
+
+button.btn:hover{
+	background-color: var(--melon);
+	border-color: var(--melon);
+	color: var(--ebony);
+}
+i.fa-angle-right{
+	margin-left: 0.5em;
+}
+
+@media (min-width: 992px){
+	i.fa-angle-right{
+		transition: all 0.5s;
+	}
+
+	button:hover i.fa-angle-right{
+		margin-left: 1.5em;
+		transform: rotate(90deg);
+		transition: all 0.5s;
+		/* background-color: var(--ebony); */
+	} 
+
+}
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
+/* LOGOUT */
+div.logout{
+	animation: fadeInAnimation ease 3s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+
+	padding: 10% 0;
+	text-align: center;
+	/* 
+	position: absolute;
+
+	left: 50%;
+	transform: translate(-50%, -50%); */
+}
+
+
+
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* HOME PAGE */
+h2{
+	padding: 3%;
+	color: var(--ebony);
+}
+
+
+
+#newEvent div{
+	background-color: var(--coral);
+	color: var(--ebony);
+}
+
+.card{
+	margin-bottom: 5%;
+}
+
+div.row.eventsGallery img{
+	background-size: cover;
+	background-position: center center;
+	height: 200px; 
+	
+}
+
+#privateEvents div{
+	background-color: var(--yellow-crayola);
+	color: var(--ebony);
+}
+
+#privateEvents #when{
+	background-color: var(--ebony);
+	color: var(--yellow-crayola);
+}
+
+#privateEvents #where{
+	background-color: var(--ebony);
+	color: var(--yellow-crayola);
+}
+
+#privateEvents #hash{
+	background-color: var(--ebony);
+	color: var(--yellow-crayola);
+}
+
+#privateEvents input[type="text"]{
+	background-color: var(--melon);
+}
+
+#privateEvents input[type="email"]{
+	background-color: var(--melon);
+}
+
+#privateEvents input[type="password"]{
+	background-color: var(--melon);
+}
+
+#privateEvents input[type="date"]{
+	background-color: var(--melon);
+}
+
+#privateEvents input[type="file"]{
+	background-color: var(--melon);
+}
+
+
+#publicEvents div{
+	background-color: var(--caribbean-green);
+	color: var(--mint-cream);
+}
+
+#publicEvents #when {
+	background-color: var(--ebony);
+	color: var(--caribbean-green);
+}
+
+#publicEvents #where {
+	background-color: var(--ebony);
+	color: var(--caribbean-green);
+}
+
+#publicEvents #hash {
+	background-color: var(--ebony);
+	color: var(--caribbean-green);
+}
+
+/* NAV BAR */
+.navbar{
+	background-color: var(--ebony);
+}
+
+a[class^="nav"]{
+	color: var(--mint-cream);
+}
+
+a[class^="nav"]:hover{
+	color: var(--caribbean-green);
+}
+
+.btn-outline-success{
+	background-color: var(--caribbean-green);
+	border-color: var(--caribbean-green);
+	color: var(--mint-cream);
+	font-size: 20px;
+}
+
+.btn-outline-success:hover{
+	background-color: var(--melon);
+	border-color: var(--melon);
+	color: var(--ebony);
+}
+
+/* OTHER */
+
+
+
+
