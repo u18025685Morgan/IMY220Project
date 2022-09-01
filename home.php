@@ -37,6 +37,7 @@
 	$eventLocation = isset($_POST["eventLocation"]) ? $_POST["eventLocation"] : null;
 	$eventHashtags = isset($_POST["eventHashtags"]) ? $_POST["eventHashtags"] : null;
 
+
 	if($eventDate !== null && $eventDescription !== null && $eventDate !== null & $picToUpload !== null)
 	{
 		$target_dir = "gallery/";
@@ -72,6 +73,7 @@
 
 				}
             }
+
         }else{
             echo "<div class='alert alert-danger mt-3' role='alert'> Invalid file </div>";
         }
