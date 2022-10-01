@@ -1,8 +1,8 @@
 <?php
 	require "database.php";
 	require "nav.html";
+	
 	session_start();
-
 	if(isset($_SESSION["user"]))
 	{
 		$user_id = $_SESSION["user"];
@@ -15,6 +15,7 @@
 		}
 	}
 	else{
+		
 		$email = isset($_POST["email"]) ? $_POST["email"] : null;
 		$pass = isset($_POST["pass"]) ? $_POST["pass"] : null;
 		// If email and/or pass POST values are set, set the variables to those values, otherwise make them false
@@ -24,9 +25,10 @@
 		if($row = mysqli_fetch_array($user))
 		{
 			$user_id = $row['user_id'];
+			$_SESSION["user"] = $user_id;
 		}
 
-		$_SESSION["user"] = $user_id;
+		
 	}
 	
 	
@@ -36,6 +38,7 @@
 	$picToUpload = isset($_FILES["picToUpload"]) ? $_FILES["picToUpload"] : null;
 	$eventLocation = isset($_POST["eventLocation"]) ? $_POST["eventLocation"] : null;
 	$eventHashtags = isset($_POST["eventHashtags"]) ? $_POST["eventHashtags"] : null;
+	$eventCategory = isset($_POST["eventCategory"]) ? $_POST["eventCategory"] : null;
 
 	if($eventDate !== null && $eventDescription !== null && $eventDate !== null & $picToUpload !== null)
 	{
@@ -57,7 +60,7 @@
 					// $event_id = $mysqli->query($query);
 				}else{
 					move_uploaded_file($picToUpload["tmp_name"], "gallery/" . $picToUpload["name"]);
-					$query = "INSERT INTO tbevents (user_id, name, description, date, location, hashtags) VALUES ('$user_id', '$eventName', '$eventDescription', '$eventDate', '$eventLocation', '$eventHashtags');";
+					$query = "INSERT INTO tbevents (user_id, name, description, date, location, hashtags, category) VALUES ('$user_id', '$eventName', '$eventDescription', '$eventDate', '$eventLocation', '$eventHashtags', '$eventCategory');";
 					$res = mysqli_query($mysqli, $query) == TRUE;
 
 					$query = "SELECT event_id FROM tbevents WHERE name = '$eventName'";
@@ -72,6 +75,7 @@
 
 				}
             }
+
         }else{
             echo "<div class='alert alert-danger mt-3' role='alert'> Invalid file </div>";
         }
@@ -88,13 +92,16 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<meta charset="utf-8" />
 	<meta name="author" content="Morgan Else">
+	<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 	<?php require "favicon.html"; ?>
 </head>
 <body>
 
+
 	<div class="container">
 		
 		<?php 
+			
 			$query = "SELECT * FROM tbusers WHERE email = '$email' AND password = '$pass'";
 			$res = $mysqli->query($query);
 			if($row = mysqli_fetch_array($res))
@@ -118,8 +125,11 @@
 									$image = $i['image_name'];
 									echo	"
 									<div class='col-4'>
-										<div class='card border-light' id='privateEvents'>
+										
+										<div class='card border-light shadow mb-5 rounded' id='privateEvents'>
+										<a id='cardLink' href='event.php?event_id=".$r['event_id']."' title='Go to ".$r['name']." event page'>
 										<img class='card-img-top' src='gallery/". $image ."' alt='Card image not found'>
+										</a>
 											<div class='card-body'>
 												<h5 class='card-title'>". $r['name']."</h5>
 												<p class='card-text'>". $r['description']  ."</p>
@@ -130,6 +140,7 @@
 												<li class='list-group-item'id='hash' >". $r['hashtags']."</li>
 											</ul>
 										</div>
+										
 									</div>";
 									
 									// else
@@ -148,7 +159,7 @@
 				echo			"</div>
 				</div>
 							<div class='col-4'>
-								<div class='card border-light ' id='newEvent'>
+								<div class='card border-light shadow mb-5 rounded' id='newEvent'>
 								<div class='card-body'>
 								<h5 class='card-title'>New Event</h5>
 									<form action='home.php' method='POST' enctype='multipart/form-data'>
@@ -159,7 +170,20 @@
 										<label for='eventDescription'>Event Description:</label><br>
 										<input type='text' class='form-control' name='eventDescription' /><br>
 
-										<label for 'eventDate'>Event date:</label><br>
+										<label for='eventCategory'>Event Category:</label>
+										<select id='inputCategory' class='form-control' name='eventCategory'>
+											<option selected>Choose Event Category...</option>";
+
+											$queryCat = "SELECT * FROM tbcategory";
+											$resCat= $mysqli->query($queryCat);
+											while($cat = mysqli_fetch_array($resCat))
+											{
+												echo "<option>". $cat['category'] . "</option>";
+											}
+										echo "
+										</select><br>
+
+										<label for ='eventDate'>Event Date:</label><br>
 										<input type='date' class='form-control' name='eventDate' /><br>	
 
 										<label for='eventLocation'>Event Location:</label><br>
@@ -201,9 +225,12 @@
 								$image = $i['image_name'];
 								echo	"
 								<div class='col-3'>
-									<div class='card border-light' id='publicEvents'>
+								
+									<div class='card border-light shadow mb-5 rounded' id='publicEvents'>
 									<div class='card-header'>".$name . " ". $surname."'s event</div>
+									<a id='cardLink' href='event.php?event_id=".$r['event_id']."' title='Go to ".$r['name']." event page'>
 									<img class='card-img-top' src='gallery/". $image ."' alt='Card image not found'>
+									</a>
 										<div class='card-body'>
 											<h5 class='card-title'>". $r['name']."</h5>
 											<p class='card-text'>". $r['description']  ."</p>
@@ -214,6 +241,7 @@
 											<li class='list-group-item'id='hash' >". $r['hashtags']."</li>
 										</ul>
 									</div>
+									
 								</div>";
 								
 							}

@@ -95,6 +95,19 @@ button.btn{
 	font-size: 20px;
 }
 
+.btn{
+	background-color: var(--caribbean-green);
+	border-color: var(--caribbean-green);
+	color: var(--mint-cream);
+	font-size: 20px;
+}
+
+.btn:hover{
+	background-color: var(--melon);
+	border-color: var(--melon);
+	color: var(--ebony);
+}
+
 button.btn:hover{
 	background-color: var(--melon);
 	border-color: var(--melon);
@@ -141,6 +154,21 @@ div.logout{
 h2{
 	padding: 3%;
 	color: var(--ebony);
+}
+
+#cardLink :link{
+	color: var(--ebony);
+	background-color: transparent;
+	text-decoration: none;
+
+}
+
+#cardLink :visited{
+	text-decoration: none;
+}
+
+#cardLink :hover{
+	text-decoration: none;
 }
 
 
@@ -247,6 +275,53 @@ a[class^="nav"]:hover{
 	border-color: var(--melon);
 	color: var(--ebony);
 }
+
+/*EVENTS */
+.scroll{
+	max-height : 400px;
+	overflow-y: auto;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:var(--mint-cream);
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: var(--yellow-crayola);    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: var(--yellow-crayola);  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: var(--yellow-crayola);
+}
+
 
 /* OTHER */
 
