@@ -65,7 +65,7 @@
 					$queryR = "INSERT INTO tbreviews (event_id, user_id, stars, comment) VALUES ('$event_id', '$reviewUser_id', '$rate', '$eventAttendReview');";
 					$resR = mysqli_query($mysqli, $queryR) == TRUE;
 
-					$query = "SELECT review_id FROM tbreviews WHERE user_id = '$reviewUser_id'";
+					$query = "SELECT review_id FROM tbreviews WHERE review_id = '$reviewUser_id'";
 					$review = $mysqli->query($query);
 					if($row = mysqli_fetch_array($review))
 					{
@@ -101,13 +101,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>EventScape Home</title>
+	<title>EventScape</title>
 	<meta charset="utf-8" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<meta charset="utf-8" />
 	<meta name="author" content="Morgan Else">
-    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/d183f81595.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+    
 	<?php require "favicon.html"; ?>
 </head>
 <body>
@@ -123,7 +125,7 @@
         }
          ?>
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-6">
                 <div class="card border-light shadow mb-5 rounded" style="height: 18rem">
                     
                         <div class="img-square-wrapper">
@@ -132,7 +134,7 @@
                        
                 </div>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-sm-6">
                 <div class="card border-light shadow mb-5 rounded" style="height: 18rem">
                    <?php echo "<div class='card-body'>
                             <h5 class='card-title'>". $eventName."</h5>
@@ -146,7 +148,7 @@
                     </div>"; ?>
                 </div>
 
-            <div class="col-lg-6">   
+            <div class="col-lg-6 col-sm-12">   
                 <div class="card border-light shadow mb-5 rounded" style="height: 18rem" id='newEvent'>
 
                 <?php 
@@ -197,7 +199,7 @@
             </div>
         </div>  
         <div class="row">
-            <div class="col ">
+            <div class="col-lg-6 col-sm-6">
                 <div class="card border-light shadow mb-5 rounded" id='privateEvents'>
                     <div class="card-body" style="text-align:center">
                         <h5 class='card-title'>Rating</h5>
@@ -219,6 +221,14 @@
                              }
                         
                         ?>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6">
+                <div class="card border-light shadow mb-5 rounded">
+                    <div class="card-body" id="dynamicList" style="text-align:center">
+                        <h5 class='card-title'>Add this event to a list?  <button type='submit' class='btn btn-dark' id="addToList">Add to List <i class="fa-solid fa-plus"></i></button></h5>
                         
                     </div>
                 </div>
@@ -280,4 +290,24 @@
                
     </div>
 </body>
+<script>
+    <?php echo "let userid = '$user_id';"; ?>
+$('button#addToList').on('click', function() {
+    $.ajax({
+        url:'getlists.php',
+        type: 'POST',
+        data : {user:  <?php echo "'$user_id'"; ?> }
+    })
+    .done(data =>{
+        $('div#dynamicList').append(
+            $("<ul></ul>", {
+                class : 'list-group list-group-flush',
+                id : 'dynamicList'
+            })
+        );
+
+        $('ul#dynamicList').append(data);
+    })
+});
+    </script>
 </html>

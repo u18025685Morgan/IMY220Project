@@ -111,8 +111,8 @@
 
 				echo 	"<p class='lead'>Here's what you're up to:</p>
 							<div class='row'>
-								<div class='col-8'>
-									<div class='row eventsGallery'>";	
+								<div class='col-8 ' >
+									<div class='row eventsGallery' >";	
 						
 						$query1 = "SELECT * FROM tbevents WHERE user_id = '$user_id' ORDER BY date DESC";
 						$res1= $mysqli->query($query1);
@@ -205,7 +205,7 @@
 				
 
 				echo 	"<p class='lead'>Here's what everyone else is up to:</p>
-							<div class='row eventsGallery'>";	
+							<div class='row eventsGallery scroll'>";	
 						
 						$query1 = "SELECT * FROM tbevents WHERE user_id != '$user_id' ORDER BY date DESC";
 						$res1= $mysqli->query($query1);
