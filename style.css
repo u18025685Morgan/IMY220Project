@@ -159,7 +159,7 @@ h2{
 	color: var(--ebony);
 }
 
-#cardLink :link{
+/* #cardLink :link{
 	color: var(--ebony);
 	background-color: transparent;
 	text-decoration: none;
@@ -172,7 +172,7 @@ h2{
 
 #cardLink :hover{
 	text-decoration: none;
-}
+} */
 
 
 
@@ -190,6 +190,11 @@ div.row.eventsGallery img{
 	background-position: center center;
 	height: 200px; 
 	
+}
+
+li#activity{
+	background-color: var(--ebony);
+	color: var(--mint-cream);
 }
 
 #privateEvents div{
@@ -343,12 +348,6 @@ a[class^="nav"]:hover{
 
 
 
- .profile-user-settings,
-.profile-stats,
-.profile-bio {
-    /* float: left; */
-    /* width: calc(66.666% - 2rem); */
-}
 
 
 
@@ -386,8 +385,24 @@ a[class^="nav"]:hover{
 
 
 
-/* OTHER */
+/* FRIENDS */
 
+div#mymessage div
+{
+	height: 50px;
+}
+div#mymessage
+{
+	background-color:#e6ffe6;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
 
+i#chat{
+	position: absolute;
+	right: 0;
+}
 
 

@@ -126,7 +126,7 @@
          ?>
         <div class="row">
             <div class="col-lg-3 col-sm-6">
-                <div class="card border-light shadow mb-5 rounded" style="height: 18rem">
+                <div class="card border-light shadow mb-5 rounded" style="height: 16rem">
                     
                         <div class="img-square-wrapper">
                         <?php echo "<img class='card-img-top' src='gallery/". $image ."' alt='Card image cap'>"; ?>
@@ -135,7 +135,7 @@
                 </div>
             </div>
             <div class="col-lg-3 col-sm-6">
-                <div class="card border-light shadow mb-5 rounded" style="height: 18rem">
+                <div class="card border-light shadow mb-5 rounded" style="height: 16rem">
                    <?php echo "<div class='card-body'>
                             <h5 class='card-title'>". $eventName."</h5>
                             <p class='card-text'>". $eventDescription  ."</p>
@@ -149,7 +149,7 @@
                 </div>
 
             <div class="col-lg-6 col-sm-12">   
-                <div class="card border-light shadow mb-5 rounded" style="height: 18rem" id='newEvent'>
+                <div class="card border-light shadow mb-5 rounded" style="height: 16rem" id='newEvent'>
 
                 <?php 
                  $queryRev = "SELECT * FROM tbreviews WHERE event_id = '$event_id' && user_id ='$user_id'";
@@ -291,12 +291,11 @@
     </div>
 </body>
 <script>
-    <?php echo "let userid = '$user_id';"; ?>
 $('button#addToList').on('click', function() {
     $.ajax({
         url:'getlists.php',
         type: 'POST',
-        data : {user:  <?php echo "'$user_id'"; ?> }
+        data : {user:  <?php echo "'$user_id'"; ?>, event :  <?php echo "'$event_id'"; ?> }
     })
     .done(data =>{
         $('div#dynamicList').append(
@@ -307,7 +306,7 @@ $('button#addToList').on('click', function() {
         );
 
         $('ul#dynamicList').append(data);
-    })
+    });
 });
     </script>
 </html>

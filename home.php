@@ -111,7 +111,7 @@
 
 				echo 	"<p class='lead'>Here's what you're up to:</p>
 							<div class='row'>
-								<div class='col-8 ' >
+								<div class='col-lg-8 col-sm-6' >
 									<div class='row eventsGallery' >";	
 						
 						$query1 = "SELECT * FROM tbevents WHERE user_id = '$user_id' ORDER BY date DESC";
@@ -124,7 +124,7 @@
 								{
 									$image = $i['image_name'];
 									echo	"
-									<div class='col-4'>
+									<div class='col-lg-4 col-sm-6'>
 										
 										<div class='card border-light shadow mb-5 rounded' id='privateEvents'>
 										<a id='cardLink' href='event.php?event_id=".$r['event_id']."' title='Go to ".$r['name']." event page'>
@@ -158,97 +158,140 @@
 
 				echo			"</div>
 				</div>
-							<div class='col-4'>
-								<div class='card border-light shadow mb-5 rounded' id='newEvent'>
-								<div class='card-body'>
-								<h5 class='card-title'>New Event</h5>
-									<form action='home.php' method='POST' enctype='multipart/form-data'>
-									<div class='form-group'>
-										
-										<label for='eventName'>Event Name:</label><br>
-										<input type='text' class='form-control' name='eventName' /><br>								
-										<label for='eventDescription'>Event Description:</label><br>
-										<input type='text' class='form-control' name='eventDescription' /><br>
+							<div class='col-lg-4 col-sm-6'>
+								<div class='row>
+									<div class='col-lg-12'>
+										<div class='card border-light shadow mb-5 rounded' id='newEvent'>
+										<div class='card-body'>
+										<h5 class='card-title'>New Event</h5>
+											<form action='home.php' method='POST' enctype='multipart/form-data'>
+											<div class='form-group'>
+												
+												<label for='eventName'>Event Name:</label><br>
+												<input type='text' class='form-control' name='eventName' /><br>								
+												<label for='eventDescription'>Event Description:</label><br>
+												<input type='text' class='form-control' name='eventDescription' /><br>
 
-										<label for='eventCategory'>Event Category:</label>
-										<select id='inputCategory' class='form-control' name='eventCategory'>
-											<option selected>Choose Event Category...</option>";
+												<label for='eventCategory'>Event Category:</label>
+												<select id='inputCategory' class='form-control' name='eventCategory'>
+													<option selected>Choose Event Category...</option>";
 
-											$queryCat = "SELECT * FROM tbcategory";
-											$resCat= $mysqli->query($queryCat);
-											while($cat = mysqli_fetch_array($resCat))
-											{
-												echo "<option>". $cat['category'] . "</option>";
-											}
-										echo "
-										</select><br>
+													$queryCat = "SELECT * FROM tbcategory";
+													$resCat= $mysqli->query($queryCat);
+													while($cat = mysqli_fetch_array($resCat))
+													{
+														echo "<option>". $cat['category'] . "</option>";
+													}
+												echo "
+												</select><br>
 
-										<label for ='eventDate'>Event Date:</label><br>
-										<input type='date' class='form-control' name='eventDate' /><br>	
+												<label for ='eventDate'>Event Date:</label><br>
+												<input type='date' class='form-control' name='eventDate' /><br>	
 
-										<label for='eventLocation'>Event Location:</label><br>
-										<input type='text' class='form-control' name='eventLocation' /><br>								
-										<label for='eventHashtags'>Event Hashtags:</label><br>
-										<input type='text' class='form-control' name='eventHashtags' /><br>
+												<label for='eventLocation'>Event Location:</label><br>
+												<input type='text' class='form-control' name='eventLocation' /><br>								
+												<label for='eventHashtags'>Event Hashtags:</label><br>
+												<input type='text' class='form-control' name='eventHashtags' /><br>
 
-										<input type='file' class='form-control' name='picToUpload' id='picToUpload' /><br/>								
-										<input type='hidden' name='email' value='". $email ."'/>
-										<input type='hidden' name='pass' value='". $pass ."'/>
-										<input type='submit' class='btn btn-dark' value='Upload event' name='submit' />
+												<input type='file' class='form-control' name='picToUpload' id='picToUpload' /><br/>								
+												<input type='hidden' name='email' value='". $email ."'/>
+												<input type='hidden' name='pass' value='". $pass ."'/>
+												<input type='submit' class='btn btn-dark' value='Upload event' name='submit' />
+											</div>
+											</form>
+										</div>
 									</div>
-									</form>
+									<div class='col-lg-12'>
+										<div class='card border-light shadow mb-5 rounded'>
+											<div class='card-header'>Activity Feed</div>
+											<ul class='list-group list-group-flush scroll'>";
+											$activityQuery = "SELECT * FROM tbreviews ORDER BY review_date DESC";
+											$activityRes= $mysqli->query($activityQuery);
+											while($activity = mysqli_fetch_array($activityRes))
+											{
+												$userActivity = $activity['user_id'];
+												$userQuery = "SELECT * FROM tbusers WHERE user_id = '$userActivity'";
+												$userRes= $mysqli->query($userQuery);
+												if($userA = mysqli_fetch_array($userRes))
+												{
+													$userName = $userA['name'];
+													$usera_id = $userA['user_id'];
+												}
+
+												$eventActivity = $activity['event_id'];
+												$eventQuery = "SELECT * FROM tbevents WHERE event_id = '$eventActivity'";
+												$eventRes= $mysqli->query($eventQuery);
+												if($eventA = mysqli_fetch_array($eventRes))
+												{
+													$eventAName = $eventA['name'];
+													$eventa_id = $eventA['event_id'];
+												}
+
+												echo "<li class='list-group-item' id='activity'><a href='profile.php?user_id=". $usera_id ."'> " .$userName ."</a> gave <a href='event.php?event_id=" . $eventa_id ."'> ". $eventAName ."</a> ";
+												for($i = 0; $i < $activity['stars']; $i++)
+												{
+													echo "★";
+												}
+												echo " </li>";
+
+											}
+											echo "</ul>
+										</div>
+									</div>
 								</div>
-								</div>
-							</div>
+
 						</div>";
+
+						
 						  
 				
 
 				echo 	"<p class='lead'>Here's what everyone else is up to:</p>
-							<div class='row eventsGallery scroll'>";	
 						
-						$query1 = "SELECT * FROM tbevents WHERE user_id != '$user_id' ORDER BY date DESC";
-						$res1= $mysqli->query($query1);
-						while($r = mysqli_fetch_array($res1))
-						{		
-							$query3 = "SELECT * FROM tbusers WHERE user_id ='$r[user_id]'";
-							$u = $mysqli->query($query3);
-							if($person = mysqli_fetch_array($u))
-							{
-								$name = $person['name'];
-								$surname = $person['surname'];
-							}
-							$query2 = "SELECT image_name FROM tbgallery WHERE event_id ='$r[event_id]'";
-							$img = $mysqli->query($query2);
-							if($i = mysqli_fetch_array($img))
-							{
-								$image = $i['image_name'];
-								echo	"
-								<div class='col-3'>
-								
-									<div class='card border-light shadow mb-5 rounded' id='publicEvents'>
-									<div class='card-header'>".$name . " ". $surname."'s event</div>
-									<a id='cardLink' href='event.php?event_id=".$r['event_id']."' title='Go to ".$r['name']." event page'>
-									<img class='card-img-top' src='gallery/". $image ."' alt='Card image not found'>
-									</a>
-										<div class='card-body'>
-											<h5 class='card-title'>". $r['name']."</h5>
-											<p class='card-text'>". $r['description']  ."</p>
-										</div>
-										<ul class='list-group list-group-flush'>
-											<li class='list-group-item' id='when'>When: ". $r['date']."</li>
-											<li class='list-group-item'id='where'>Where: ". $r['location']."</li>
-											<li class='list-group-item'id='hash' >". $r['hashtags']."</li>
-										</ul>
-									</div>
-									
-								</div>";
-								
-							}
+								<div class='row eventsGallery scroll'>";	
+							
+								$query1 = "SELECT * FROM tbevents WHERE user_id != '$user_id' ORDER BY date DESC";
+								$res1= $mysqli->query($query1);
+								while($r = mysqli_fetch_array($res1))
+								{		
+									$query3 = "SELECT * FROM tbusers WHERE user_id ='$r[user_id]'";
+									$u = $mysqli->query($query3);
+									if($person = mysqli_fetch_array($u))
+									{
+										$name = $person['name'];
+										$surname = $person['surname'];
+									}
+									$query2 = "SELECT image_name FROM tbgallery WHERE event_id ='$r[event_id]'";
+									$img = $mysqli->query($query2);
+									if($i = mysqli_fetch_array($img))
+									{
+										$image = $i['image_name'];
+										echo	"
+										<div class='col-3'>
+										
+											<div class='card border-light shadow mb-5 rounded' id='publicEvents'>
+											<div class='card-header'><a href='profile.php?user_id=".$r['user_id']."'>".$name . " ". $surname."'s event</div>
+											<a id='cardLink' href='event.php?event_id=".$r['event_id']."' title='Go to ".$r['name']." event page'>
+											<img class='card-img-top' src='gallery/". $image ."' alt='Card image not found'>
+											</a>
+												<div class='card-body'>
+													<h5 class='card-title'>". $r['name']."</h5>
+													<p class='card-text'>". $r['description']  ."</p>
+												</div>
+												<ul class='list-group list-group-flush'>
+													<li class='list-group-item' id='when'>When: ". $r['date']."</li>
+													<li class='list-group-item'id='where'>Where: ". $r['location']."</li>
+													<li class='list-group-item'id='hash' >". $r['hashtags']."</li>
+												</ul>
+											</div>
+											
+										</div>";
+										
+									}
+							
+							
+								}
 						
-						
-						}
-						echo "</div>";
 			}//end if
 
 			else

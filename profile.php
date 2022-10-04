@@ -83,6 +83,8 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<meta charset="utf-8" />
 	<meta name="author" content="Morgan Else">
+	<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/d183f81595.js" crossorigin="anonymous"></script>
 	<?php require "favicon.html"; ?>
 </head>
 <body>
@@ -114,26 +116,27 @@
 									{
 										$friends = false;
 										echo "<h3 class='profile-user-name'>". $userFullName ." </h3>
-										<a class='btn profile-edit-btn' href=''>Pending</a>";
+										<button type='submit' class='btn btn-dark' id='pending'>Pending</button>";
 									}
 									else if($wrw['friend1_id'] == $userPage_id && $wrw['friend_status'] == "pending")
 									{
 										$friends = false;
 										echo "<h3 class='profile-user-name'>". $userFullName ." </h3>
-										<a class='btn profile-edit-btn' href=''>Accept Request</a>";
+										<button type='submit' class='btn btn-dark' id='accept'>Accept Request</button>";
 									}
 									else
 									{
 										$friends = TRUE;
 										echo "<h3 class='profile-user-name'>". $userFullName ." </h3>
-										<a class='btn profile-edit-btn' href=''>Remove Friend</a>";
+										<button type='submit' class='btn btn-dark' id='remove'>Remove Friend</button>
+										<a class='btn profile-edit-btn' href='chat.php?friend_id=". $userPage_id ."'>Message</a>";
 									}
 								}
 								else
 								{
 									$friends = false;
 									echo "<h3 class='profile-user-name'>". $userFullName ." </h3>
-									<a class='btn profile-edit-btn' href=''>Add Friend</a>";
+									<button type='submit' class='btn btn-dark' id='add'>Add Friend</button>";
 								}
 								
 							}else
@@ -173,11 +176,11 @@
 										$F = mysqli_num_rows($resF);
 										if($F)
 										{
-											echo "<li><span class='profile-stat-count'>" . $F ."</span> friends</li>";
+											echo "<li id='friends'><span class='profile-stat-count'>" . $F ."</span> friends</li>";
 										}
 										else
 										{
-											echo "<li><span class='profile-stat-count'>0</span> friends</li>";
+											echo "<li id='friends'><span class='profile-stat-count'>0</span> friends</li>";
 										}
 									}
 
@@ -318,12 +321,12 @@
 												}else{
 													$ifimage = "chilldog.jpg";
 												}
-												echo "<li class='list-group-item'><a href='profile.php?user_id=". $foaf_id ."'><img src='". $ifimage."'  width='17rem' height='17rem'> ". $foaf['name']." " . $foaf['surname']."</a></li>";
+												echo "<li class='list-group-item'><a href='profile.php?user_id=". $foaf_id ."'><i class='fa-solid fa-user'></i> ". $foaf['name']." " . $foaf['surname']."</a></li>";
 											}
 										}
 								}
 								else{
-									echo "<p>Only ". $name ."'s friends can see her friend list</p>";
+									echo "<p>Only ". $name ."'s friends can see their friend list</p>";
 								}
 							}
 							else
@@ -345,7 +348,7 @@
 										$friendResults= $mysqli->query($friendQuery);
 										if($friend = mysqli_fetch_array($friendResults))
 										{
-											echo "<li class='list-group-item'><a href='profile.php?user_id=". $eventUserID ."'>". $friend['name']."</a> wants to be your friend</li>";
+											echo "<li class='list-group-item'><a href='profile.php?user_id=". $friend_id ."'>". $friend['name']."</a> wants to be your friend</li>";
 										}
 										
 									}
@@ -561,4 +564,59 @@
 		
 	</div>
 </body>
+<script>
+	<?php echo "let userid = '$user_id';
+	let userPageid = '$userPage_id';"; ?>
+	$('button#add').on('click', function() {
+    $.ajax({
+        url:'friendmanage.php',
+        type: 'POST',
+        data : {user_id: <?php echo "'$user_id'"; ?>, friend : <?php echo "'$userPage_id'"; ?>, status : 'add'}
+    })
+    .done(data =>{
+		if(data){
+		document.getElementById('add').innerHTML = 'Pending';
+		document.getElementById('add').id = 'pending';
+        
+    }
+	
+});
+
+});
+
+$('button#accept').on('click', function() {
+    $.ajax({
+        url:'friendmanage.php',
+        type: 'POST',
+        data : {user_id: <?php echo "'$user_id'"; ?>, friend : <?php echo "'$userPage_id'"; ?>, status : 'accept'}
+    })
+    .done(data =>{
+		if(data){
+
+		document.getElementById('accept').innerHTML = 'Remove Friend';
+		document.getElementById('accept').id = 'remove';
+        
+    }
+});
+
+});
+
+$('button#remove').on('click', function() {
+    $.ajax({
+        url:'friendmanage.php',
+        type: 'POST',
+        data : {user_id: <?php echo "'$user_id'"; ?>, friend : <?php echo "'$userPage_id'"; ?>, status : 'remove'}
+    })
+    .done(data =>{
+		if(data){
+
+		document.getElementById('remove').innerHTML = 'Add Friend';
+		document.getElementById('remove').id = 'add';
+        
+    }
+});
+
+});
+	
+</script>
 </html>

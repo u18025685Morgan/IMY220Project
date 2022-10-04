@@ -2,10 +2,11 @@
 require "database.php";
 
 $user_id = $_POST['user'];
+$event_id = $_POST['event'];
 
 $query = "SELECT * FROM tblists WHERE user_id = '$user_id'";
 	$res= $mysqli->query($query);
-    while($row = mysqli_fetch_array($res))
+    if($row = mysqli_fetch_array($res))
     {
         $list_id = $row['list_id'];
 
@@ -13,14 +14,14 @@ $query = "SELECT * FROM tblists WHERE user_id = '$user_id'";
 	    $Eres= $mysqli->query($Equery);
         while($Erow = mysqli_fetch_array($Eres))
         {
-            echo "<li class='list-group-item'>". $Erow['list_name']."</li>";
+            echo "<li class='list-group-item'>". $Erow['list_name']."<a class='btn add-to-list-btn' href='lists.php?list_id=". $list_id ."&event_id=". $event_id ."'><i class='fa-solid fa-plus'></i></a></li>";
         }
-
+        echo "<p>Make a new list <a href='lists.php' class='badge badge-light'>here</a></p> ";
     }
-
-    if($row = mysqli_fetch_array($res) == null)
+    else
     {
-        echo "<p>You have no lists, make a new list <a href='lists.php' class='badge badge-light'>here</a></p> ";
+        echo "<p>Make a new list <a href='lists.php' class='badge badge-light'>here</a></p> ";
     }
+
 
     ?>

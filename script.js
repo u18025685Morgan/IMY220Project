@@ -1,8 +1,8 @@
 $(document).ready(()=>{
 
-$('button#addToList').on('click', function() {
+$('button#add').on('click', function() {
     $.ajax({
-        url:'getlists.php',
+        url:'friendmanage.php',
         type: 'POST',
         date : {user_id: '$user_id'}
     })
