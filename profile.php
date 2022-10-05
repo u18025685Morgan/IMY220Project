@@ -321,7 +321,7 @@
 												}else{
 													$ifimage = "chilldog.jpg";
 												}
-												echo "<li class='list-group-item'><a href='profile.php?user_id=". $foaf_id ."'><i class='fa-solid fa-user'></i> ". $foaf['name']." " . $foaf['surname']."</a></li>";
+												echo "<li class='list-group-item' id='friendrequests'><a href='profile.php?user_id=". $foaf_id ."'><i class='fa-solid fa-user'></i> ". $foaf['name']." " . $foaf['surname']."</a></li>";
 											}
 										}
 								}
@@ -348,7 +348,7 @@
 										$friendResults= $mysqli->query($friendQuery);
 										if($friend = mysqli_fetch_array($friendResults))
 										{
-											echo "<li class='list-group-item'><a href='profile.php?user_id=". $friend_id ."'>". $friend['name']."</a> wants to be your friend</li>";
+											echo "<li class='list-group-item' id='friendrequests'><a href='profile.php?user_id=". $friend_id ."'>". $friend['name']."</a> wants to be your friend</li>";
 										}
 										
 									}
@@ -382,7 +382,7 @@
 					echo "<p class='lead'>". $name ."'s Events</p>
 					<div class='row eventsGallery scroll' >";
 						
-							$myEventQuery = "SELECT * FROM tbevents WHERE user_id = '$userPage_id' ORDER BY date DESC";
+							$myEventQuery = "SELECT * FROM tbevents WHERE user_id = '$userPage_id' AND status = 'active' ORDER BY date DESC";
 							$myEventResults= $mysqli->query($myEventQuery);
 							while($myEvents = mysqli_fetch_array($myEventResults))
 							{
@@ -392,7 +392,7 @@
 									{
 										$image = $myEventImage['image_name'];
 										echo	"
-										<div class='col-6'>
+										<div class='col-6' id='". $myEvents['status']."'>
 											
 											<div class='card border-light shadow mb-5 rounded' id='privateEvents'>
 											<a id='cardLink' href='event.php?event_id=".$myEvents['event_id']."' title='Go to ".$myEvents['name']." event page'>
@@ -419,7 +419,7 @@
 					echo "<p class='lead'>Your Events</p>
 				<div class='row eventsGallery scroll' >";
 					
-						$myEventQuery = "SELECT * FROM tbevents WHERE user_id = '$user_id' ORDER BY date DESC";
+						$myEventQuery = "SELECT * FROM tbevents WHERE user_id = '$user_id' AND status = 'active' ORDER BY date DESC";
 						$myEventResults= $mysqli->query($myEventQuery);
 						while($myEvents = mysqli_fetch_array($myEventResults))
 						{
@@ -429,7 +429,7 @@
 								{
 									$image = $myEventImage['image_name'];
 									echo	"
-									<div class='col-6'>
+									<div class='col-6' id='". $myEvents['status']."'>
 										
 										<div class='card border-light shadow mb-5 rounded' id='privateEvents'>
 										<a id='cardLink' href='event.php?event_id=".$myEvents['event_id']."' title='Go to ".$myEvents['name']." event page'>
@@ -474,7 +474,7 @@
 									{
 										$image = $myEventAImage['image_name'];
 										echo	"
-										<div class='col-6'>
+										<div class='col-6' id='". $attendedEvents['status']."'>
 											
 											<div class='card border-light shadow mb-5 rounded' id='publicEvents'>
 											<a id='cardLink' href='event.php?event_id=".$attendedEvents['event_id']."' title='Go to ".$attendedEvents['name']." event page'>
@@ -525,7 +525,7 @@
 									{
 										$image = $myEventAImage['image_name'];
 										echo	"
-										<div class='col-6'>
+										<div class='col-6' id='". $attendedEvents['status']."'>
 											
 											<div class='card border-light shadow mb-5 rounded' id='publicEvents'>
 											<a id='cardLink' href='event.php?event_id=".$attendedEvents['event_id']."' title='Go to ".$attendedEvents['name']." event page'>

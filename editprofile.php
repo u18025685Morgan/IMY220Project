@@ -80,7 +80,11 @@
     
                                 $query = "INSERT INTO tbusergallery (user_id, image_name) VALUES ('$user_id', '$filename');";
                                 $res = mysqli_query($mysqli, $query) == TRUE;
-    
+
+                                echo "<div class='alert alert-success ' role='alert'>
+                                    Profile updated successfuly!
+                                    
+                                </div>";
                             
                         }
                     }
@@ -101,6 +105,11 @@
 
                             $query = "INSERT INTO tbusergallery (user_id, image_name) VALUES ('$user_id', '$filename');";
                             $res = mysqli_query($mysqli, $query) == TRUE;
+
+                            echo "<div class='alert alert-success ' role='alert'>
+                                    Profile updated successfuly!
+                                    
+                                </div>";
 
                         
                     }

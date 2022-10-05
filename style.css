@@ -12,6 +12,24 @@
 div.container{
 	padding-top: var(--bs-gutter-x,.75rem);
 }
+
+div.row{
+	padding-top: var(--bs-gutter-x,.75rem);
+}
+
+div#listheader1{
+	background-color: var(--ebony);
+}
+
+div#listheader2{
+	background-color: var(--yellow-crayola);
+	color: var(--ebony);
+}
+
+div#listheader3{
+	background-color: var(--caribbean-green);
+	color: var(--mint-cream);
+}
 /* SPLASH PAGE */
 
 body{
@@ -91,7 +109,7 @@ div.card-header{
 }
 
 /* BUTTONS */
-button.btn{
+.btn{
 	background-color: var(--caribbean-green);
 	border-color: var(--caribbean-green);
 	color: var(--mint-cream);
@@ -111,7 +129,7 @@ button.btn{
 	color: var(--ebony);
 }
 
-button.btn:hover{
+.btn:hover{
 	background-color: var(--melon);
 	border-color: var(--melon);
 	color: var(--ebony);
@@ -183,6 +201,9 @@ h2{
 
 .card{
 	margin-bottom: 5%;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+	
+	border-radius: 5px;
 }
 
 div.row.eventsGallery img{
@@ -346,9 +367,14 @@ a[class^="nav"]:hover{
 	color: var(--caribbean-green);
 }
 
+li#friendrequests {
+	background-color: var(--caribbean-green);
+	color: var(--mint-cream);
+}
 
-
-
+a[class^="list-group-item"]{
+	background-color: var(--ebony);
+}
 
 
 .profile-user-name {
@@ -383,6 +409,11 @@ a[class^="nav"]:hover{
     margin-top: 2.3rem;
 }
 
+div#deleted
+{
+	background-color: var(--mint-cream);
+	color: gray;
+}
 
 
 /* FRIENDS */
@@ -393,7 +424,22 @@ div#mymessage div
 }
 div#mymessage
 {
-	background-color:#e6ffe6;
+	background-color: var(--yellow-crayola);
+	color: var(--ebony);
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+div#friendmessage div
+{
+	height: 50px;
+}
+div#friendmessage
+{
+	background-color:var(--ebony);
+	color: var(--mint-cream);
 	box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
 	padding: 10px;
 	margin-bottom: 10px;
@@ -404,5 +450,67 @@ i#chat{
 	position: absolute;
 	right: 0;
 }
+
+button#sendmsg{
+	display: inline-block;
+}
+
+a {
+	outline: none;
+	text-decoration: none;
+	padding: 2px 1px 0;
+  }
+  
+  a:link {
+	color: var(--yellow-crayola);
+  }
+  
+  a:visited {
+	color: var(--yellow-crayola);
+  }
+  
+  a:focus {
+	border-bottom: 1px solid;
+	background: var(--caribbean-green);
+  }
+  
+  a:hover {
+	border-bottom: 1px solid;
+	color:  var(--coral);
+  }
+  
+  a:active {
+	background: var(--mint-cream);
+	color: var(--ebony);
+  }
+
+  div#privateEvents a {
+	outline: none;
+	text-decoration: none;
+	padding: 2px 1px 0;
+  }
+  
+  div#privateEvents a:link {
+	color: var(--ebony);
+  }
+  
+  div#privateEvents a:visited {
+	color: var(--yellow-crayola);
+  }
+  
+  div#privateEvents a:focus {
+	border-bottom: 1px solid;
+	background: var(--caribbean-green);
+  }
+  
+  div#privateEvents a:hover {
+	border-bottom: 1px solid;
+	color:  var(--coral);
+  }
+  
+  div#privateEvents a:active {
+	background: var(--mint-cream);
+	color: var(--ebony);
+  }
 
 

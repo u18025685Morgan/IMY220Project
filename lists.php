@@ -105,7 +105,7 @@
                 echo "<p class='lead'>Here are the lists you've made: <a class='btn profile-edit-btn' href='newlist.php'>New List</a></p>
 
                 <div class='row'>";
-                    $cardColours = array(" ", "privateEvents", "publicEvents");
+                    $cardColours = array("listheader1", "listheader2", "listheader3");
                     $count = 0;
                     $query = "SELECT * FROM tblists WHERE user_id = '$user_id'";
                     $res= $mysqli->query($query);
@@ -120,11 +120,11 @@
                         $description = $row['list_description'];
 
                         echo "<div class='col-4'>
-                        <div class='card border-light shadow mb-5 rounded' id='". $cardColours[$count] ."'>
+                        <div class='card border-light shadow mb-5 rounded' id='". $cardColours[$count]."'>
                             <div class='card-body'>
                                 <p><strong>". $name ." </strong></p>
                                 <p>". $description."</p>
-                                <div class='list-group scroll'>";
+                                <div  class='list-group scroll'>";
 
                                 $queryEv = "SELECT * FROM tblistevents WHERE list_id = '$list_id'";
                                 $resEv= $mysqli->query($queryEv);
@@ -136,7 +136,7 @@
                                     while($Event = mysqli_fetch_array($rEv))
                                     {
                                         echo "<a href='event.php?event_id=". $Ev_id ."' class='list-group-item list-group-item-action flex-column align-items-start'>
-                                            <div class='d-flex w-100 justify-content-between'>
+                                            <div  class='d-flex w-100 justify-content-between'>
                                             <h5 class='mb-1'>". $Event['name'] ."</h5>
                                             <small>". $Event['date'] ."</small>
                                             </div>

@@ -60,7 +60,7 @@
 					// $event_id = $mysqli->query($query);
 				}else{
 					move_uploaded_file($picToUpload["tmp_name"], "gallery/" . $picToUpload["name"]);
-					$query = "INSERT INTO tbevents (user_id, name, description, date, location, hashtags, category) VALUES ('$user_id', '$eventName', '$eventDescription', '$eventDate', '$eventLocation', '$eventHashtags', '$eventCategory');";
+					$query = "INSERT INTO tbevents (user_id, name, description, date, location, hashtags, category, status) VALUES ('$user_id', '$eventName', '$eventDescription', '$eventDate', '$eventLocation', '$eventHashtags', '$eventCategory', 'active');";
 					$res = mysqli_query($mysqli, $query) == TRUE;
 
 					$query = "SELECT event_id FROM tbevents WHERE name = '$eventName'";
@@ -114,7 +114,7 @@
 								<div class='col-lg-8 col-sm-6' >
 									<div class='row eventsGallery' >";	
 						
-						$query1 = "SELECT * FROM tbevents WHERE user_id = '$user_id' ORDER BY date DESC";
+						$query1 = "SELECT * FROM tbevents WHERE user_id = '$user_id' AND status ='active' ORDER BY date DESC";
 						$res1= $mysqli->query($query1);
 							while($r = mysqli_fetch_array($res1))
 							{	
@@ -227,7 +227,7 @@
 													$eventa_id = $eventA['event_id'];
 												}
 
-												echo "<li class='list-group-item' id='activity'><a href='profile.php?user_id=". $usera_id ."'> " .$userName ."</a> gave <a href='event.php?event_id=" . $eventa_id ."'> ". $eventAName ."</a> ";
+												echo "<li class='list-group-item' id='activity'><a id='nicelink' href='profile.php?user_id=". $usera_id ."'> " .$userName ."</a> gave <a href='event.php?event_id=" . $eventa_id ."'> ". $eventAName ."</a> ";
 												for($i = 0; $i < $activity['stars']; $i++)
 												{
 													echo "★";
@@ -250,7 +250,7 @@
 						
 								<div class='row eventsGallery scroll'>";	
 							
-								$query1 = "SELECT * FROM tbevents WHERE user_id != '$user_id' ORDER BY date DESC";
+								$query1 = "SELECT * FROM tbevents WHERE user_id != '$user_id' AND status = 'active' ORDER BY date DESC";
 								$res1= $mysqli->query($query1);
 								while($r = mysqli_fetch_array($res1))
 								{		
@@ -270,7 +270,7 @@
 										<div class='col-3'>
 										
 											<div class='card border-light shadow mb-5 rounded' id='publicEvents'>
-											<div class='card-header'><a href='profile.php?user_id=".$r['user_id']."'>".$name . " ". $surname."'s event</div>
+											<div class='card-header'><a id='nicelink' href='profile.php?user_id=".$r['user_id']."'>".$name . " ". $surname."'s event</div>
 											<a id='cardLink' href='event.php?event_id=".$r['event_id']."' title='Go to ".$r['name']." event page'>
 											<img class='card-img-top' src='gallery/". $image ."' alt='Card image not found'>
 											</a>

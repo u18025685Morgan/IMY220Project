@@ -10,12 +10,16 @@ if($status == 'add')
     $query = "INSERT INTO tbfriends (friend1_id, friend2_id, friend_status) VALUES ('$user_id', '$friend_id', 'pending');";
     $res = mysqli_query($mysqli, $query) == TRUE;
     
-    echo "WORKING";
+    
 }
 else if($status == 'accept')
 {
     $updateQuery = "UPDATE tbfriends SET friend_status = 'friends' WHERE friend1_id = '$friend_id' AND friend2_id = '$user_id'";
     $updateResult= $mysqli->query($updateQuery) == TRUE;
+
+    $query = "INSERT INTO tbconvos (friend1_id, friend2_id) VALUES ('$user_id', '$friend_id');";
+    $res = mysqli_query($mysqli, $query) == TRUE;
+    
 
     // $friendsquery = "SELECT * FROM tbfriends WHERE user_id = '$friend_id'";
 	// $friendsres= $mysqli->query($friendsquery);
