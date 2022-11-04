@@ -9,6 +9,15 @@
 --ebony: #464e47ff;
 }
 
+div.container{
+	padding-top: var(--bs-gutter-x,.75rem);
+}
+
+div.row{
+	padding-top: var(--bs-gutter-x,.50rem);
+}
+
+
 /* SPLASH PAGE */
 
 body{
@@ -88,18 +97,49 @@ div.card-header{
 }
 
 /* BUTTONS */
-button.btn{
+.btn-dark, .profile-edit-btn{
 	background-color: var(--caribbean-green);
 	border-color: var(--caribbean-green);
 	color: var(--mint-cream);
 	font-size: 20px;
+	margin: 4px;
+	padding: 4px;
 }
 
-button.btn:hover{
+#adminbutton {
+	background-color: var(--coral);
+	border-color: var(--coral);
+	color: var(--mint-cream);
+	font-size: 20px;
+	margin: 4px;
+	padding: 4px
+}
+
+#adminbutton:hover {
+	background-color: var(--ebony);
+	color: var(--mint-cream);
+	border-color: var(--ebony);
+	margin: 4px;
+	padding: 4px;
+}
+
+#adminbutton:visited {
+	background-color: var(--ebony);
+	color: var(--mint-cream);
+	border-color: var(--ebony);
+	margin: 4px;
+	padding: 4px;
+}
+
+.btn-dark:hover, .profile-edit-btn:hover{
 	background-color: var(--melon);
 	border-color: var(--melon);
 	color: var(--ebony);
+	padding: 4px;
+	margin: 4px;
 }
+
+
 i.fa-angle-right{
 	margin-left: 0.5em;
 }
@@ -139,8 +179,10 @@ div.logout{
 
 /* HOME PAGE */
 h2{
+	font-family: 'Open Sans', sans-serif;
 	padding: 3%;
 	color: var(--ebony);
+	text-align: center;
 }
 
 
@@ -150,8 +192,13 @@ h2{
 	color: var(--ebony);
 }
 
+
+
 .card{
-	margin-bottom: 5%;
+	margin-bottom: 3%;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+	
+	border-radius: 5px;
 }
 
 div.row.eventsGallery img{
@@ -159,6 +206,11 @@ div.row.eventsGallery img{
 	background-position: center center;
 	height: 200px; 
 	
+}
+
+li#activity{
+	background-color: var(--ebony);
+	color: var(--mint-cream);
 }
 
 #privateEvents div{
@@ -248,8 +300,547 @@ a[class^="nav"]:hover{
 	color: var(--ebony);
 }
 
-/* OTHER */
+/*EVENTS */
+.scroll{
+	max-height : 500px;
+	overflow-y: auto;
+}
+
+.scrollAc{
+	max-height : 200px;
+	overflow-y: auto;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:var(--mint-cream);
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: var(--yellow-crayola);    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: var(--yellow-crayola);  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: var(--yellow-crayola);
+}
+
+
+/* PROFILE */
+/* .profile {
+    padding: 5rem 0;
+}
+ */
+ .profile::after {
+    content: "";
+    display: block;
+    clear: both;
+} 
+
+#pronoun{
+	color: var(--caribbean-green);
+}
+
+li#friendrequests {
+	background-color: var(--caribbean-green);
+	color: var(--mint-cream);
+}
+
+a[class^="list-group-item"]{
+	background-color: var(--ebony);
+}
+
+
+.profile-user-name {
+    display: inline-block;
+    /* font-size: 3.2rem;
+    font-weight: 300; */
+}
 
 
 
+.profile-stats {
+    margin-top: 2rem;
+}
 
+.profile-stats li {
+    display: inline-block;
+    /* font-size: 1.6rem; */
+    line-height: 1.5;
+    margin-right: 4rem;
+    cursor: pointer;
+	font-weight: bold;
+}
+
+.profile-stats li:last-of-type {
+    margin-right: 0;
+}
+
+.profile-bio {
+    /* font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 1.5; */
+    margin-top: 2.3rem;
+}
+
+#deleted div
+{
+	background-color: var(--mint-cream);
+	color: gray;
+}
+
+#deleted #when{
+	background-color: var(--mint-cream);
+	color: gray;
+}
+
+#deleted #where{
+	background-color: var(--mint-cream);
+	color: gray;
+}
+
+#deleted #hash{
+	background-color: var(--mint-cream);
+	color: gray;
+}
+
+#active div
+{
+	background-color: var(--yellow-crayola);
+	color: var(--ebony);
+}
+
+#active #when {
+	background-color: var(--ebony);
+	color: var(--yellow-crayola);
+}
+
+#active #where {
+	background-color: var(--ebony);
+	color: var(--yellow-crayola);
+}
+
+#active #hash {
+	background-color: var(--ebony);
+	color: var(--yellow-crayola);
+}
+
+
+/* FRIENDS */
+
+div#mymessage div
+{
+	height: 50px;
+}
+div#mymessage
+{
+	background-color: var(--yellow-crayola);
+	color: var(--ebony);
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+div#friendmessage div
+{
+	height: 50px;
+}
+div#friendmessage
+{
+	background-color:var(--ebony);
+	color: var(--mint-cream);
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.3);
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+i#chat{
+	position: absolute;
+	right: 0;
+}
+
+button#sendmsg{
+	display: inline-block;
+}
+
+a {
+	outline: none;
+	text-decoration: none;
+	padding: 2px 1px 0;
+  }
+  
+  a:link {
+	color: var(--yellow-crayola);
+  }
+  
+  a:visited {
+	color: var(--yellow-crayola);
+  }
+  
+  a:focus {
+	border-bottom: 1px solid;
+	background: var(--caribbean-green);
+  }
+  
+  a:hover {
+	border-bottom: 1px solid;
+	color:  var(--coral);
+  }
+  
+  a:active {
+	background: var(--mint-cream);
+	color: var(--ebony);
+  }
+
+  a#nicelink {
+	outline: none;
+	text-decoration: none;
+	padding: 2px 1px 0;
+  }
+  
+  a#nicelink:link {
+	color: var(--coral);
+  }
+  
+  a#nicelink:visited {
+	color: var(--coral);
+  }
+  
+  a#nicelink:focus {
+	border-bottom: 1px solid;
+	background: var(--caribbean-green);
+  }
+  
+  a#nicelink:hover {
+	border-bottom: 1px solid;
+	color:  var(--yellow-crayola);
+  }
+  
+  a#nicelink:active {
+	background: var(--mint-cream);
+	color: var(--ebony);
+  }
+
+  a#otherevent {
+	outline: none;
+	text-decoration: none;
+	padding: 2px 1px 0;
+  }
+  
+  a#otherevent:link {
+	color: var(--coral);
+  }
+  
+  a#otherevent:visited {
+	color: var(--coral);
+  }
+  
+  a#otherevent:focus {
+	border-bottom: 1px solid;
+	background: var(--caribbean-green);
+  }
+  
+  a#otherevent:hover {
+	border-bottom: 1px solid;
+	color:  var(--coral);
+  }
+  
+  a#otherevent:active {
+	background: var(--mint-cream);
+	color: var(--ebony);
+  }
+
+  div#privateEvents a {
+	outline: none;
+	text-decoration: none;
+	padding: 2px 1px 0;
+  }
+  
+  div#privateEvents a:link {
+	color: var(--ebony);
+  }
+  
+  div#privateEvents a:visited {
+	color: var(--yellow-crayola);
+  }
+  
+  div#privateEvents a:focus {
+	border-bottom: 1px solid;
+	background: var(--caribbean-green);
+  }
+  
+  div#privateEvents a:hover {
+	border-bottom: 1px solid;
+	color:  var(--coral);
+  }
+  
+  div#privateEvents a:active {
+	background: var(--mint-cream);
+	color: var(--ebony);
+  }
+
+
+
+  /* LISTS */
+  #listheader1 div, #listheader1 p, #listheader1 small{
+	background-color: var(--ebony);
+	color: var(--mint-cream);
+}
+
+div#listheader1 a#listlink.list-group-item.list-group-item-action.flex-column.align-items-start
+{
+	background-color: var(--ebony);
+}
+
+div#listheader1 a#listlink.list-group-item.list-group-item-action.flex-column.align-items-start:hover
+{
+	background-color: var(--caribbean-green);
+}
+
+div#listheader1 div.d-flex.w-100.justify-content-between:hover{
+	background-color: var(--caribbean-green);
+}
+
+
+div#listheader1 a#listlink:link p, div#listheader1 a#listlink:link small, div#listheader1 a#listlink:link h5{
+	color: var(--mint-cream);
+  }
+  
+  div#listheader1 a#listlink:visited p, div#listheader1 a#listlink:visited small, div#listheader1 a#listlink:visited h5{
+	color: var(--mint-cream);
+  }
+  
+  div#listheader1 a#listlink:focus p, div#listheader1 a#listlink:focus small, div#listheader1 a#listlink:focus h5{
+	border-bottom: 1px solid;
+	background: var(--caribbean-green);
+  }
+  
+  div#listheader1 a#listlink:hover p, div#listheader1 a#listlink:hover small, div#listheader1 a#listlink:hover h5{
+	border-bottom: 1px solid;
+	color:  var(--yellow-crayola);
+	background-color: var(--caribbean-green);
+  }
+
+  div#listheader1 a#listlink:active {
+	background: var(--mint-cream);
+	color: var(--ebony);
+  }
+
+  #listheader2 div, #listheader2 p, #listheader2 small{
+	background-color: var(--yellow-crayola);
+	color: var(--ebony);
+}
+
+  div#listheader2 a#listlink:link p, div#listheader2 a#listlink:link small, div#listheader2 a#listlink:link h5{
+	color: var(--ebony);
+  }
+  
+  div#listheader2 a#listlink:visited p, div#listheader2 a#listlink:visited small, div#listheader2 a#listlink:visited h5{
+	color: var(--ebony);
+  }
+  
+  div#listheader2 a#listlink:focus p, div#listheader2 a#listlink:focus small, div#listheader2 a#listlink:focus h5{
+	border-bottom: 1px solid;
+	background: var(--caribbean-green);
+  }
+  
+  div#listheader2 a#listlink:hover p, div#listheader2 a#listlink:hover small, div#listheader2 a#listlink:hover h5{
+	border-bottom: 1px solid;
+	color:  var(--ebony);
+	background-color: var(--coral);
+  }
+
+  div#listheader2 a#listlink:active {
+	background: var(--mint-cream);
+	color: var(--ebony);
+  }
+
+
+
+#listheader2 div{
+	background-color: var(--yellow-crayola);
+	color: var(--ebony);
+}
+div#listheader2 a#listlink.list-group-item.list-group-item-action.flex-column.align-items-start
+{
+	background-color: var(--yellow-crayola);
+}
+
+div#listheader2 a#listlink.list-group-item.list-group-item-action.flex-column.align-items-start:hover
+{
+	background-color: var(--coral);
+}
+
+div#listheader2 div.d-flex.w-100.justify-content-between:hover{
+	background-color: var(--coral);
+}
+
+
+#listheader3 div, #listheader3 p, #listheader3 small{
+	background-color: var(--caribbean-green);
+	color: var(--mint-cream);
+}
+
+  div#listheader3 a#listlink:link p, div#listheader3 a#listlink:link small, div#listheader3 a#listlink:link h5{
+	color: var(--mint-cream);
+  }
+  
+  div#listheader3 a#listlink:visited p, div#listheader3 a#listlink:visited small, div#listheader3 a#listlink:visited h5{
+	color: var(--mint-cream);
+  }
+  
+  div#listheader3 a#listlink:focus p, div#listheader3 a#listlink:focus small, div#listheader3 a#listlink:focus h5{
+	border-bottom: 1px solid;
+	background: var(--caribbean-green);
+  }
+  
+  div#listheader3 a#listlink:hover p, div#listheader3 a#listlink:hover small, div#listheader3 a#listlink:hover h5{
+	border-bottom: 1px solid;
+	color:  var(--ebony);
+	background-color: var(--yellow-crayola);
+  }
+
+  div#listheader3 a#listlink:active {
+	background: var(--mint-cream);
+	color: var(--ebony);
+  }
+
+
+
+#listheader3 div{
+	background-color: var(--caribbean-green);
+	color: var(--mint-cream);
+}
+div#listheader3 a#listlink.list-group-item.list-group-item-action.flex-column.align-items-start
+{
+	background-color: var(--caribbean-green);
+}
+
+div#listheader3 a#listlink.list-group-item.list-group-item-action.flex-column.align-items-start:hover
+{
+	background-color: var(--yellow-crayola);
+}
+
+div#listheader3 div.d-flex.w-100.justify-content-between:hover{
+	background-color: var(--yellow-crayola);
+}
+
+
+a#revLink {
+	outline: none;
+	text-decoration: none;
+	padding: 2px 1px 0;
+  }
+  
+  a#revLink:link {
+	color: var(--mint-cream);
+  }
+  
+  a#revLink:visited {
+	color: var(--mint-cream);
+  }
+  
+  a#revLink:focus {
+	border-bottom: 1px solid;
+	background: var(--caribbean-green);
+  }
+  
+  a#revLink:hover {
+	border-bottom: 1px solid;
+	color:  var(--coral);
+  }
+  
+  a#revLink:active {
+	background: var(--mint-cream);
+	color: var(--ebony);
+  }
+
+  
+  div#privateEvents a#revLink:link {
+	color: var(--ebony);
+  }
+  
+  div#privateEvents a#revLink:visited {
+	color: var(--ebony);
+  }
+  
+  div#privateEvents a#revLink:focus {
+	border-bottom: 1px solid;
+	background: var(--caribbean-green);
+  }
+  
+  div#privateEvents a#revLink:hover {
+	border-bottom: 1px solid;
+	color:  var(--caribbean-green);
+  }
+  
+  div#privateEvents a#revLink:active {
+	background: var(--mint-cream);
+	color: var(--ebony);
+  }
+
+  div#publicEvents a#revLink:link {
+	color: var(--mint-cream);
+  }
+  
+  div#publicEvents a#revLink:visited {
+	color: var(--mint-cream);
+  }
+  
+  div#publicEvents a#revLink:focus {
+	border-bottom: 1px solid;
+	background: var(--caribbean-green);
+  }
+  
+  div#publicEvents a#revLink:hover {
+	border-bottom: 1px solid;
+	color:  var(--coral);
+  }
+  
+  div#privateEvents a#revLink:active {
+	background: var(--mint-cream);
+	color: var(--ebony);
+  }
+
+  /* ADMIN */
+
+  #addCat{
+	cursor: pointer;
+  }
+
+  #newEvent #adminlist{
+	background-color: white;
+}
+
+#adminlist div.d-flex.w-100.justify-content-between{
+	background-color: white;
+	color: var(--ebony);
+}

@@ -8,7 +8,7 @@
 	$date = isset($_POST["date"])? $_POST["date"] : null;
 	$pass = isset($_POST["pass"])? $_POST["pass"] : null;
 
-	$query = "INSERT INTO tbusers (name, surname, email, birthday, password) VALUES ('$name', '$surname', '$email', '$date', '$pass');";
+	$query = "INSERT INTO tbusers (name, surname, email, birthday, password, user_type) VALUES ('$name', '$surname', '$email', '$date', '$pass', 'normie');";
 
 
 	$res = mysqli_query($mysqli, $query) == TRUE;
@@ -20,6 +20,7 @@
 		}
 
 		$_SESSION["user"] = $user_id;
+		$_SESSION["user_type"] = "normie";
 ?>
 
 <!DOCTYPE html>
